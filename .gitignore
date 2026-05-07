@@ -7,3 +7,6 @@ node_modules/
 .env.*
 .vscode/
 .idea/
+# Git merge staging artifact
+.git-main-staging-merge
+git-main-staging-merge.md
