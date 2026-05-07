@@ -1,0 +1,13 @@
+{
+  "name": "shopify-theme-sync-dev",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "tailwindcss -i ./src/tailwind.css -o ./assets/tailwind.css --watch",
+    "build": "tailwindcss -i ./src/tailwind.css -o ./assets/tailwind.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.0",
+    "tailwindcss": "^4.1.0"
+  }
+}

@@ -1,0 +1,14 @@
+/*
+ * Tailwind v4 — utilities only, no preflight.
+ * Preflight is intentionally NOT imported so Dawn's existing
+ * base/reset styles are not overridden.
+ *
+ * Scan Liquid + JS for class names:
+ */
+@source "../**/*.liquid";
+@source "../**/*.js";
+
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);

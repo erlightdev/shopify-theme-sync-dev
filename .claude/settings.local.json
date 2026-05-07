@@ -4,7 +4,9 @@
       "Bash(git branch *)",
       "Bash(git remote *)",
       "Bash(git push *)",
-      "Bash(git fetch *)"
+      "Bash(git fetch *)",
+      "Bash(npm --version)",
+      "Bash(npx @tailwindcss/cli -i ./src/tailwind.css -o ./assets/tailwind.css --minify)"
     ]
   }
 }
