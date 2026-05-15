@@ -11,8 +11,75 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "footer_pokemon_VgfzQn": {
+      "type": "footer-pokemon",
+      "blocks": {
+        "help_xyD8xr": {
+          "type": "help",
+          "settings": {
+            "heading": "Help Trainers",
+            "text": "Find a Poké Center nearest you for fast shipping and gym-ready support. Show on Google maps.",
+            "phone": "+1 (973) 435-3638",
+            "email": "trainers@pokestore.com",
+            "show_socials": true,
+            "facebook": "",
+            "instagram": "",
+            "tiktok": "",
+            "youtube": "",
+            "pinterest": ""
+          }
+        },
+        "links_ie3nqk": {
+          "type": "links",
+          "settings": {
+            "heading": "Our Poké Mart",
+            "menu": "footer"
+          }
+        },
+        "links_gPigMM": {
+          "type": "links",
+          "settings": {
+            "heading": "Shop Pokémon",
+            "menu": "footer"
+          }
+        },
+        "newsletter_CALbTL": {
+          "type": "newsletter",
+          "settings": {
+            "heading": "Join the Trainer Newsletter",
+            "text": "Sign up for 10% off your first catch and free shipping. Get news on rare drops, new sets, and tournament events.",
+            "placeholder": "Enter your email...",
+            "button_label": "Sign Up",
+            "fine_print": "<p>***By entering your e-mail you accept the <strong>terms and conditions</strong> and the <strong>privacy policy.</strong></p>"
+          }
+        }
+      },
+      "block_order": [
+        "help_xyD8xr",
+        "links_ie3nqk",
+        "links_gPigMM",
+        "newsletter_CALbTL"
+      ],
+      "name": "Pokémon Footer",
+      "settings": {
+        "bg_color": "#0b0b0b",
+        "heading_color": "#ffffff",
+        "text_color": "#cfcfcf",
+        "muted_color": "#8a8a8a",
+        "border_color": "#2a2a2a",
+        "input_bg": "#1a1a1a",
+        "accent_color": "#FFCB05",
+        "show_region": true,
+        "region_label": "United States (USD $)",
+        "copyright_name": "Poké Store",
+        "show_payments": true,
+        "padding_top": 60,
+        "padding_bottom": 32
+      }
+    },
     "footer": {
       "type": "footer",
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-1",
         "newsletter_enable": true,
@@ -30,6 +97,7 @@
     }
   },
   "order": [
+    "footer_pokemon_VgfzQn",
     "footer"
   ]
 }
