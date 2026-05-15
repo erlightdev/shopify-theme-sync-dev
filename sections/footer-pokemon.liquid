@@ -30,10 +30,22 @@
     .pkmn-newsletter { background: var(--pkmn-input); }
     .pkmn-newsletter input::placeholder { color: var(--pkmn-muted); }
     .pkmn-newsletter button:hover { background: var(--pkmn-accent); }
+
+    .pkmn-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    @media (min-width: 750px) {
+      .pkmn-grid { grid-template-columns: 1.4fr 1fr 1fr 1.4fr; gap: 48px; }
+    }
+    .pkmn-footer ul, .pkmn-footer ol { list-style: none; margin: 0; padding: 0; }
+    .pkmn-footer li { list-style: none; margin: 0; padding: 0; }
+    .pkmn-footer li::before, .pkmn-footer li::marker { content: none; }
   </style>
 
   <div class="mx-auto max-w-375 px-6">
-    <div class="grid grid-cols-1 gap-9 md:grid-cols-[1.4fr_1fr_1fr_1.4fr] md:gap-12">
+    <div class="pkmn-grid">
       {%- for block in section.blocks -%}
         <div {{ block.shopify_attributes }}>
           {%- case block.type -%}
