@@ -1,0 +1,207 @@
+{% comment %}
+  Pokémon Store Footer — Tailwind v4.
+  Uses CSS variables for theme-editor color settings; layout/typography via Tailwind utilities.
+{% endcomment %}
+
+<footer
+  class="pkmn-footer text-(--pkmn-text) [background:var(--pkmn-bg)]"
+  style="
+    --pkmn-bg: {{ section.settings.bg_color }};
+    --pkmn-text: {{ section.settings.text_color }};
+    --pkmn-heading: {{ section.settings.heading_color }};
+    --pkmn-muted: {{ section.settings.muted_color }};
+    --pkmn-border: {{ section.settings.border_color }};
+    --pkmn-input: {{ section.settings.input_bg }};
+    --pkmn-accent: {{ section.settings.accent_color }};
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  "
+>
+  <style>
+    @media (min-width: 750px) {
+      .pkmn-footer { padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; }
+    }
+    .pkmn-footer a { transition: color .15s ease; }
+    .pkmn-footer a:hover { color: var(--pkmn-accent); }
+    .pkmn-social { border: 1px solid var(--pkmn-border); transition: background .15s, border-color .15s, transform .15s; }
+    .pkmn-social:hover { background: var(--pkmn-accent); border-color: var(--pkmn-accent); transform: translateY(-2px); }
+    .pkmn-social svg { fill: var(--pkmn-text); transition: fill .15s; }
+    .pkmn-social:hover svg { fill: #000; }
+    .pkmn-newsletter { background: var(--pkmn-input); }
+    .pkmn-newsletter input::placeholder { color: var(--pkmn-muted); }
+    .pkmn-newsletter button:hover { background: var(--pkmn-accent); }
+  </style>
+
+  <div class="mx-auto max-w-375 px-6">
+    <div class="grid grid-cols-1 gap-9 md:grid-cols-[1.4fr_1fr_1fr_1.4fr] md:gap-12">
+      {%- for block in section.blocks -%}
+        <div {{ block.shopify_attributes }}>
+          {%- case block.type -%}
+            {%- when 'help' -%}
+              <h3 class="mb-4.5 text-base font-bold tracking-wide text-(--pkmn-heading)">{{ block.settings.heading }}</h3>
+              <p class="text-sm leading-7">{{ block.settings.text }}</p>
+              <div class="mt-3.5 text-sm leading-7">
+                {%- if block.settings.phone != blank -%}<div>{{ block.settings.phone }}</div>{%- endif -%}
+                {%- if block.settings.email != blank -%}<div>{{ block.settings.email }}</div>{%- endif -%}
+              </div>
+              {%- if block.settings.show_socials -%}
+                <div class="mt-5 flex gap-2.5">
+                  {%- if block.settings.facebook != blank -%}
+                    <a href="{{ block.settings.facebook }}" aria-label="Facebook" class="pkmn-social inline-flex h-9.5 w-9.5 items-center justify-center rounded-full"><svg viewBox="0 0 24 24" class="h-4 w-4"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.1.3-1.9 1.9-1.9H17V2.1C16.6 2.1 15.4 2 14 2c-2.9 0-4.9 1.8-4.9 5v3H6v4h3v8h4z"/></svg></a>
+                  {%- endif -%}
+                  {%- if block.settings.instagram != blank -%}
+                    <a href="{{ block.settings.instagram }}" aria-label="Instagram" class="pkmn-social inline-flex h-9.5 w-9.5 items-center justify-center rounded-full"><svg viewBox="0 0 24 24" class="h-4 w-4"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 5.4a4.4 4.4 0 100 8.8 4.4 4.4 0 000-8.8zm0 7.3a2.9 2.9 0 110-5.8 2.9 2.9 0 010 5.8zm5.6-7.5a1 1 0 11-2 0 1 1 0 012 0z"/></svg></a>
+                  {%- endif -%}
+                  {%- if block.settings.tiktok != blank -%}
+                    <a href="{{ block.settings.tiktok }}" aria-label="TikTok" class="pkmn-social inline-flex h-9.5 w-9.5 items-center justify-center rounded-full"><svg viewBox="0 0 24 24" class="h-4 w-4"><path d="M21 8.4a7.5 7.5 0 01-4.4-1.4v6.7a5.7 5.7 0 11-5.7-5.7c.3 0 .6 0 .8.1v2.7a3 3 0 102 2.8V2h2.6a4.9 4.9 0 004.7 4.7v1.7z"/></svg></a>
+                  {%- endif -%}
+                  {%- if block.settings.youtube != blank -%}
+                    <a href="{{ block.settings.youtube }}" aria-label="YouTube" class="pkmn-social inline-flex h-9.5 w-9.5 items-center justify-center rounded-full"><svg viewBox="0 0 24 24" class="h-4 w-4"><path d="M23.5 6.5a3 3 0 00-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.4A3 3 0 00.5 6.5 31 31 0 000 12a31 31 0 00.5 5.5 3 3 0 002.1 2.1C4.5 20 12 20 12 20s7.5 0 9.4-.4a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.5zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+                  {%- endif -%}
+                  {%- if block.settings.pinterest != blank -%}
+                    <a href="{{ block.settings.pinterest }}" aria-label="Pinterest" class="pkmn-social inline-flex h-9.5 w-9.5 items-center justify-center rounded-full"><svg viewBox="0 0 24 24" class="h-4 w-4"><path d="M12 2a10 10 0 00-3.6 19.3c-.1-.8-.2-2 0-2.9l1.3-5.4s-.3-.7-.3-1.6c0-1.5.9-2.7 2-2.7.9 0 1.4.7 1.4 1.5 0 .9-.6 2.3-.9 3.6-.3 1.1.5 1.9 1.6 1.9 1.9 0 3.4-2 3.4-5 0-2.6-1.9-4.4-4.5-4.4-3.1 0-4.9 2.3-4.9 4.7 0 .9.4 1.9.8 2.5.1.1.1.2.1.3l-.3 1.2c0 .2-.2.2-.4.1-1.3-.6-2.1-2.6-2.1-4.1 0-3.4 2.4-6.5 7-6.5 3.7 0 6.5 2.6 6.5 6.1 0 3.7-2.3 6.6-5.5 6.6-1.1 0-2-.6-2.4-1.2l-.7 2.5c-.2.9-.9 2.1-1.4 2.8A10 10 0 1012 2z"/></svg></a>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
+            {%- when 'links' -%}
+              <h3 class="mb-4.5 text-base font-bold tracking-wide text-(--pkmn-heading)">{{ block.settings.heading }}</h3>
+              {%- if block.settings.menu != blank -%}
+                <ul class="space-y-2.5 text-sm leading-7">
+                  {%- for link in block.settings.menu.links -%}
+                    <li><a href="{{ link.url }}" class="text-(--pkmn-text)">{{ link.title | escape }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+
+            {%- when 'newsletter' -%}
+              <h3 class="mb-4.5 text-base font-bold tracking-wide text-(--pkmn-heading)">{{ block.settings.heading }}</h3>
+              <p class="text-sm leading-7">{{ block.settings.text }}</p>
+              {%- form 'customer' -%}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <div class="pkmn-newsletter mt-3.5 flex max-w-105 items-center rounded-full p-1.5">
+                  <input
+                    type="email"
+                    name="contact[email]"
+                    placeholder="{{ block.settings.placeholder | default: 'Enter your email...' }}"
+                    required
+                    aria-label="Email"
+                    class="flex-1 border-none bg-transparent px-4 py-3 text-sm text-(--pkmn-text) outline-none"
+                  >
+                  <button type="submit" class="cursor-pointer rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-colors">
+                    {{ block.settings.button_label | default: 'Sign Up' }}
+                  </button>
+                </div>
+                {%- if form.posted_successfully? -%}
+                  <p class="mt-4 max-w-105 text-xs leading-6" style="color:var(--pkmn-accent);">Thanks for subscribing! Your Poké Ball of deals is on the way.</p>
+                {%- endif -%}
+                {%- if block.settings.fine_print != blank -%}
+                  <div class="mt-4 max-w-105 text-xs leading-6 text-(--pkmn-muted) [&_strong]:text-(--pkmn-text)">{{ block.settings.fine_print }}</div>
+                {%- endif -%}
+              {%- endform -%}
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="mt-10 flex flex-wrap items-center justify-between gap-4 border-t pt-5.5" style="border-color: var(--pkmn-border);">
+      <div class="flex flex-wrap gap-6 text-[13px] text-(--pkmn-muted)">
+        {%- if section.settings.show_region -%}
+          <span class="inline-flex items-center gap-1.5 text-(--pkmn-text)">
+            {{ section.settings.region_label }}
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg>
+          </span>
+        {%- endif -%}
+        <span>&copy; {{ 'now' | date: '%Y' }} {{ section.settings.copyright_name | default: shop.name }}. All rights reserved.</span>
+      </div>
+      {%- if section.settings.show_payments -%}
+        <ul class="flex flex-wrap gap-2" role="list">
+          {%- for type in shop.enabled_payment_types -%}
+            <li class="list-none [&_svg]:h-5.5 [&_svg]:w-auto">{{ type | payment_type_svg_tag: class: 'pkmn-pay' }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Pokémon Footer",
+  "tag": "section",
+  "class": "pkmn-footer-section",
+  "settings": [
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#0b0b0b" },
+    { "type": "color", "id": "heading_color", "label": "Heading", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#cfcfcf" },
+    { "type": "color", "id": "muted_color", "label": "Muted text", "default": "#8a8a8a" },
+    { "type": "color", "id": "border_color", "label": "Border", "default": "#2a2a2a" },
+    { "type": "color", "id": "input_bg", "label": "Newsletter input bg", "default": "#1a1a1a" },
+    { "type": "color", "id": "accent_color", "label": "Accent (Pikachu yellow)", "default": "#FFCB05" },
+
+    { "type": "header", "content": "Bottom bar" },
+    { "type": "checkbox", "id": "show_region", "label": "Show region selector text", "default": true },
+    { "type": "text", "id": "region_label", "label": "Region label", "default": "United States (USD $)" },
+    { "type": "text", "id": "copyright_name", "label": "Copyright name", "default": "Poké Store" },
+    { "type": "checkbox", "id": "show_payments", "label": "Show payment icons", "default": true },
+
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding top", "default": 60 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom", "default": 32 }
+  ],
+  "blocks": [
+    {
+      "type": "help",
+      "name": "Help / Contact",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Help Trainers" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Find a Poké Center nearest you for fast shipping and gym-ready support. Show on Google maps." },
+        { "type": "text", "id": "phone", "label": "Phone", "default": "+1 (973) 435-3638" },
+        { "type": "text", "id": "email", "label": "Email", "default": "trainers@pokestore.com" },
+        { "type": "checkbox", "id": "show_socials", "label": "Show social icons", "default": true },
+        { "type": "url", "id": "facebook", "label": "Facebook URL" },
+        { "type": "url", "id": "instagram", "label": "Instagram URL" },
+        { "type": "url", "id": "tiktok", "label": "TikTok URL" },
+        { "type": "url", "id": "youtube", "label": "YouTube URL" },
+        { "type": "url", "id": "pinterest", "label": "Pinterest URL" }
+      ]
+    },
+    {
+      "type": "links",
+      "name": "Link list",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Our Poké Mart" },
+        { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Join the Trainer Newsletter" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Sign up for 10% off your first catch and free shipping. Get news on rare drops, new sets, and tournament events." },
+        { "type": "text", "id": "placeholder", "label": "Placeholder", "default": "Enter your email..." },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Sign Up" },
+        { "type": "richtext", "id": "fine_print", "label": "Fine print", "default": "<p>***By entering your e-mail you accept the <strong>terms and conditions</strong> and the <strong>privacy policy.</strong></p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pokémon Footer",
+      "blocks": [
+        { "type": "help" },
+        { "type": "links", "settings": { "heading": "Our Poké Mart" } },
+        { "type": "links", "settings": { "heading": "Shop Pokémon" } },
+        { "type": "newsletter" }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "groups": ["footer"]
+  }
+}
+{% endschema %}
